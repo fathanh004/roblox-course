@@ -10,11 +10,11 @@ return {
 		Pets = {
 			{
 				Name = "Dog",
-				Chance = 50,
+				Chance = 40,
 			},
 			{
 				Name = "Cat",
-				Chance = 50,
+				Chance = 60,
 			},
 		},
 	},

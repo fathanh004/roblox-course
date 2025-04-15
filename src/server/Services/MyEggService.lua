@@ -13,7 +13,7 @@ local PetsService = require(ReplicatedStorage.Packages.petsModule)
 
 local MyEggService = Knit.CreateService({
 	Name = "MyEggService",
-
+	IsHatching = false,
 	EggsOwned = {},
 
 	Client = {
@@ -65,10 +65,20 @@ function MyEggService:HatchEgg(player, eggName)
 		return
 	end
 
+	if self.IsHatching then
+		print("Player " .. player.Name .. " is already hatching an egg.")
+		return
+	end
+
 	for i, ownedEgg in ipairs(self.EggsOwned[player]) do
 		if ownedEgg.Name == eggName then
 			local egg = ownedEgg
 			local hatchTime = egg.HatchTime or 3 -- default ke 3 detik jika tidak ada
+
+			self.IsHatching = true
+
+			-- Hapus telur dari inventori
+			table.remove(self.EggsOwned[player], i)
 
 			-- Trigger start hatching visual
 			self.Client.OnStartHatchEgg:Fire(player, ownedEgg.DisplayName, hatchTime)
@@ -79,11 +89,9 @@ function MyEggService:HatchEgg(player, eggName)
 					local petUUID = PetsService:AddPet(player, pet.Name)
 					PetsService:EquipPet(player, petUUID)
 
-					-- Hapus telur dari inventori
-					table.remove(self.EggsOwned[player], i)
-
 					-- Trigger end hatching visual
 					self.Client.OnEndHatchEgg:Fire(player, eggName)
+					self.IsHatching = false
 				else
 					warn("No pet found for egg: " .. eggName)
 				end
