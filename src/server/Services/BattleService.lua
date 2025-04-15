@@ -9,6 +9,7 @@ local CollectionService = game:GetService("CollectionService")
 local Players = game:GetService("Players")
 local DataService
 local FightService = require(ReplicatedStorage.Packages.fightModule)
+local ActionService = require(ReplicatedStorage.Packages.actionModule)
 
 local BattleService = Knit.CreateService({
 	Name = "BattleService",

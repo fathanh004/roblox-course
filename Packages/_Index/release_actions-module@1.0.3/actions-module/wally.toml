@@ -1,0 +1,9 @@
+[package]
+name = "release/actions-module"
+version = "1.0.3"
+registry = "https://github.com/Rivrs-Roblox/wally-index"
+realm = "shared"
+
+[dependencies]
+knit = "sleitnick/knit@1.5.1"
+core = "release/core-module@^1"

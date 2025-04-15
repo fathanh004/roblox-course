@@ -12,6 +12,8 @@ local FightController = require(ReplicatedStorage.Packages.fightModule)
 
 local DataService
 local BattleService
+local ActionService
+local ActionController = require(ReplicatedStorage.Packages.actionModule)
 
 -- Npcs
 local Npcs = CollectionsService:GetTagged("NPC")
@@ -73,12 +75,23 @@ function BattleController:KnitStart()
 		end
 	end
 
-	-- Saat tombol E ditekan
-	UserInputService.InputBegan:Connect(function(input, gameProcessed)
-		if gameProcessed then
-			return
-		end
-		if input.KeyCode == Enum.KeyCode.F and targetNpc then
+	-- local success = ActionService:PerformAction("Attack"):await()
+
+	-- Saat tombol F ditekan
+	-- UserInputService.InputBegan:Connect(function(input, gameProcessed)
+	-- 	if gameProcessed then
+	-- 		return
+	-- 	end
+	-- 	if input.KeyCode == Enum.KeyCode.F and targetNpc then
+	-- 		BattleService:DamageEnemy(targetNpc:GetAttribute("NpcName"), 10)
+	-- 	end
+	-- end)
+
+	-- ActionController:BindKey(Enum.KeyCode.F, "Attack")
+
+	ActionController:RegisterEvents("OnActionPerformed", function(actionName)
+		print("Action performed: " .. actionName)
+		if actionName == "Attack" and targetNpc then
 			BattleService:DamageEnemy(targetNpc:GetAttribute("NpcName"), 10)
 		end
 	end)
@@ -95,6 +108,7 @@ end
 function BattleController:KnitInit()
 	BattleService = Knit.GetService("BattleService")
 	DataService = Knit.GetService("DataService")
+	ActionService = Knit.GetService("ActionService")
 end
 
 return BattleController
