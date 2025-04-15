@@ -35,19 +35,19 @@ function MyPetService:KnitStart()
 		end)
 
 		-- code playeradded
-		local playerPets = PetsService:GetPets(player)
-		print("PlayerPets ", playerPets)
+		-- local playerPets = PetsService:GetPets(player)
+		-- print("PlayerPets ", playerPets)
 
-		local petUUID = PetsService:AddPet(player, "Cat")
-		playerPets = PetsService:GetPets(player)
-		print("PlayerPets ", playerPets)
+		-- local petUUID = PetsService:AddPet(player, "Dog")
+		-- playerPets = PetsService:GetPets(player)
+		-- print("PlayerPets ", playerPets)
 
-		local equippedPets = PetsService:GetEquippedPets(player)
-		print("EquippedPets ", equippedPets)
+		-- local equippedPets = PetsService:GetEquippedPets(player)
+		-- print("EquippedPets ", equippedPets)
 
-		PetsService:EquipPet(player, petUUID)
-		equippedPets = PetsService:GetEquippedPets(player)
-		print("EquippedPets ", equippedPets)
+		-- PetsService:EquipPet(player, petUUID)
+		-- equippedPets = PetsService:GetEquippedPets(player)
+		-- print("EquippedPets ", equippedPets)
 	end
 
 	Players.PlayerAdded:Connect(playerAdded)

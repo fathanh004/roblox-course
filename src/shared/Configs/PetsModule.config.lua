@@ -33,6 +33,13 @@ local Pets = {
 		["Movement"] = "Walk",
 	},
 
+	["Dog"] = {
+		["Name"] = "Dog",
+		["Power"] = 100,
+		["Rarity"] = "Rare",
+		["Movement"] = "Walk",
+	},
+
 	-- Additional pets...
 }
 
