@@ -16,7 +16,10 @@ local MyEggService = Knit.CreateService({
 
 	EggsOwned = {},
 
-	Client = {},
+	Client = {
+		OnStartHatchEgg = Knit.CreateSignal(),
+		OnEndHatchEgg = Knit.CreateSignal(),
+	},
 })
 
 --|| Client Functions ||--
@@ -51,37 +54,41 @@ function MyEggService:AddPlayerEgg(player, eggName)
 		if not self.EggsOwned[player] then
 			self.EggsOwned[player] = {}
 		end
-		table.insert(self.EggsOwned[player], eggName)
-		print("Player " .. player.Name .. " has received egg: " .. eggName)
+		table.insert(self.EggsOwned[player], eggTable)
+		print("Player " .. player.Name .. " has received egg: " .. eggTable.Name)
 	end
 end
 
 function MyEggService:HatchEgg(player, eggName)
-	if not self.EggsOwned[player] then
+	if not self.EggsOwned[player] or #self.EggsOwned[player] == 0 then
 		print("Player " .. player.Name .. " does not own any eggs.")
 		return
 	end
 
-	local egg
 	for i, ownedEgg in ipairs(self.EggsOwned[player]) do
-		if ownedEgg == eggName then
-			egg = ownedEgg
-			if egg then
-				-- Logic to hatch the egg and give the player a pet
-				print("Hatching egg: " .. eggName .. " for player: " .. player.Name)
+		if ownedEgg.Name == eggName then
+			local egg = ownedEgg
+			local hatchTime = egg.HatchTime or 3 -- default ke 3 detik jika tidak ada
+
+			-- Trigger start hatching visual
+			self.Client.OnStartHatchEgg:Fire(player, ownedEgg.DisplayName, hatchTime)
+
+			task.delay(hatchTime, function()
 				local pet = EggsService:GetEggRandomPet(eggName)
 				if pet then
 					local petUUID = PetsService:AddPet(player, pet.Name)
 					PetsService:EquipPet(player, petUUID)
 
-					-- delete egg from player inventory
+					-- Hapus telur dari inventori
 					table.remove(self.EggsOwned[player], i)
+
+					-- Trigger end hatching visual
+					self.Client.OnEndHatchEgg:Fire(player, eggName)
 				else
-					print("No pet found for egg: " .. eggName)
+					warn("No pet found for egg: " .. eggName)
 				end
-			else
-				print("Player " .. player.Name .. " does not own egg: " .. eggName)
-			end
+			end)
+
 			break
 		end
 	end

@@ -1,11 +1,12 @@
 -- ReplicatedStorage/Shared/Configs/EggsModule.config.lua
 
 return {
-	DefaultEgg = {
-		Name = "common_egg",
+	CommonEgg = {
+		Name = "CommonEgg",
 		DisplayName = "Common Egg",
 		Price = 5,
 		Currency = "Wins",
+		HatchTime = 5, -- in seconds
 		Pets = {
 			{
 				Name = "Dog",

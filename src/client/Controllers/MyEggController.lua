@@ -24,6 +24,14 @@ local MyEggController = Knit.CreateController({
 })
 
 --|| Local Functions ||--
+local function setEggTransparency(transparency: number)
+	if EggIncubator then
+		local egg = EggIncubator:FindFirstChild("Egg")
+		if egg then
+			egg.Transparency = transparency
+		end
+	end
+end
 
 --|| Functions ||--
 function MyEggController:AddPlayerEgg(eggName: string)
@@ -71,10 +79,70 @@ function MyEggController:KnitStart()
 		local proximityPrompt = EggIncubator:FindFirstChild("ProximityPrompt")
 		if proximityPrompt then
 			proximityPrompt.Triggered:Connect(function(player: Player)
-				self:HatchEgg("DefaultEgg")
+				self:HatchEgg("CommonEgg")
 			end)
 		end
+		setEggTransparency(1)
 	end
+
+	-- Handle egg hatching visuals
+	local billboard = EggIncubator:FindFirstChildWhichIsA("BillboardGui")
+	local eggNameLabel
+	local timeLabel
+
+	if billboard then
+		eggNameLabel = billboard:FindFirstChild("EggName")
+		if eggNameLabel and eggNameLabel:IsA("TextLabel") then
+			eggNameLabel.Text = "Hatch Here!"
+		end
+
+		timeLabel = billboard:FindFirstChild("Time")
+		if timeLabel and timeLabel:IsA("TextLabel") then
+			timeLabel.Visible = false
+			timeLabel.Text = ""
+		end
+	end
+
+	MyEggService.OnStartHatchEgg:Connect(function(eggName: string, hatchTime: number)
+		setEggTransparency(0)
+
+		local billboard = EggIncubator:FindFirstChildWhichIsA("BillboardGui")
+		if billboard and eggNameLabel and timeLabel then
+			if eggNameLabel and eggNameLabel:IsA("TextLabel") then
+				eggNameLabel.Text = eggName
+			end
+
+			if timeLabel and timeLabel:IsA("TextLabel") then
+				-- Countdown logic
+				local remaining = hatchTime
+				timeLabel.Visible = true
+
+				task.spawn(function()
+					while remaining > 0 do
+						timeLabel.Text = string.format("Hatching: %ds", remaining)
+						task.wait(1)
+						remaining -= 1
+					end
+					timeLabel.Text = "Ready!"
+				end)
+			end
+		end
+	end)
+
+	MyEggService.OnEndHatchEgg:Connect(function()
+		setEggTransparency(1)
+
+		if billboard then
+			if eggNameLabel and eggNameLabel:IsA("TextLabel") then
+				eggNameLabel.Text = "Hatch Here!"
+			end
+
+			if timeLabel and timeLabel:IsA("TextLabel") then
+				timeLabel.Visible = false
+				timeLabel.Text = ""
+			end
+		end
+	end)
 
 	ActionController:RegisterEvents("OnActionPerformed", function(actionName)
 		print("Action performed: " .. actionName)
