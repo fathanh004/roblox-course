@@ -7,7 +7,7 @@ local Rodux = require(ReplicatedStorage.Packages.Rodux)
 --|| Reducer ||--
 return Rodux.createReducer({
 	Coins = 0,
-	Wins = 0,
+	Diamonds = 0,
 	Spins = 0,
 
 	Pets = {
@@ -71,9 +71,9 @@ return Rodux.createReducer({
 		return newState
 	end,
 
-	setWins = function(state, action)
+	setDiamonds = function(state, action)
 		local newState = table.clone(state)
-		newState.Wins = action.value
+		newState.Diamonds = action.value
 		return newState
 	end,
 

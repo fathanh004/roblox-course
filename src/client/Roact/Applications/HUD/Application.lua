@@ -29,6 +29,7 @@ local function HUD(_, hooks)
 		AnchorPoint = Vector2.new(0.5, 0.5),
 		Position = UDim2.fromScale(0.5, 0.5),
 		Size = UDim2.fromScale(1, 1),
+		Visible = false, -- Sementara false karena mau pakai UI Module
 		BackgroundTransparency = 1,
 	}, {
 		-- Bottom bar (Coin display)

@@ -10,7 +10,7 @@ return {
 		return { value = value }
 	end),
 
-	setWins = Rodux.makeActionCreator("setCoins", function(value)
+	setDiamonds = Rodux.makeActionCreator("setDiamonds", function(value)
 		return { value = value }
 	end),
 
