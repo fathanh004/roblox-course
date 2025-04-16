@@ -36,8 +36,8 @@ function Container(_, hooks)
 	}
 
 	local petCount = #PetReducer.pets
-	print("Pet Count: ", petCount)
 	local petFrames = {}
+	print(PetReducer.pets, petCount)
 	if petCount > 0 then
 		local springs, api = RoactSpring.useTrail(hooks, petCount, function()
 			return props
@@ -51,7 +51,7 @@ function Container(_, hooks)
 		end, { isOpen })
 
 		for i, pet in ipairs(PetReducer.pets) do
-			petFrames[pet.name] = Roact.createElement(require(FramesFolder.Template), {
+			petFrames[pet.uuid] = Roact.createElement(require(FramesFolder.Template), {
 				PetName = pet.name,
 				PetImageId = pet.imageId,
 				Transparency = springs[i].transparency,
