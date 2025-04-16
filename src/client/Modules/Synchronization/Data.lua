@@ -12,6 +12,7 @@ local QuestActions = require(Actions.QuestActions)
 local DiamondActions = require(Actions.DiamondActions)
 local FightActions = require(Actions.FightActions)
 local BattleActions = require(Actions.BattleActions)
+local PetActions = require(Actions.PetActions)
 local Data = {}
 
 function Data:Init()
@@ -21,6 +22,7 @@ function Data:Init()
 	local DiamondService = Knit.GetService("DiamondService")
 	local FightService = Knit.GetService("FightService")
 	local BattleService = Knit.GetService("BattleService")
+	local PetsService = Knit.GetService("PetsService")
 
 	-- Ambil data pemain dari DataService dan set koin
 	DataService:GetData():andThen(function(data)
@@ -64,6 +66,11 @@ function Data:Init()
 
 	BattleService.OnNpcDead:Connect(function(npcName)
 		Store:dispatch(BattleActions.removeEnemy(npcName))
+	end)
+
+	PetsService.OnPetAdded:Connect(function(petUUID, pet)
+		print("Pet added:", petUUID, pet)
+		Store:dispatch(PetActions.addPet(petUUID, pet))
 	end)
 end
 

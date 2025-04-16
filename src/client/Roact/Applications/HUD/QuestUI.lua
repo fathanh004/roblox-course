@@ -1,8 +1,8 @@
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 
 local Roact = require(ReplicatedStorage.Packages.Roact)
-local RoactHooks = require(ReplicatedStorage.Packages.Hooks)
-local RoduxHooks = require(ReplicatedStorage.Packages.Roduxhooks)
+local RoactHooks = require(ReplicatedStorage.Packages.RoactHooks)
+local RoduxHooks = require(ReplicatedStorage.Packages.RoduxHooks)
 
 local function QuestUI(_, hooks)
 	local QuestState = RoduxHooks.useSelector(hooks, function(state)

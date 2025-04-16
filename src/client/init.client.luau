@@ -15,11 +15,10 @@ local ReplicatedStorage = game:GetService("ReplicatedStorage")
 -- Packages
 local KnitClient = require(ReplicatedStorage.Packages.Knit)
 local Roact = require(ReplicatedStorage.Packages.Roact)
-local RoduxHooks = require(ReplicatedStorage.Packages.Roduxhooks)
+local RoduxHooks = require(ReplicatedStorage.Packages.RoduxHooks)
 
 local Store = require(StarterPlayer.StarterPlayerScripts.Client.Rodux.Store)
 local Preloader = require(ReplicatedStorage.Packages.Preloader)
-
 
 Preloader:Configure({
 	showLoadingScreen = true,
@@ -29,7 +28,7 @@ Preloader:Configure({
 	initialDelay = 0.5,
 	finalDelay = 1,
 	skipEnabled = false,
-	batchSize = 10, 
+	batchSize = 10,
 	keepLoadingScreen = false,
 	paths = {
 		controllersPath = StarterPlayer.StarterPlayerScripts.Client.Controllers,
@@ -59,8 +58,8 @@ Preloader.ControllersLoadedSignal:Connect(function()
 	)
 end)
 
-Preloader.EndPreloaderSignal:Connect(function(bool)
-	
-end)
+Preloader.EndPreloaderSignal:Connect(function(bool) end)
 
 Preloader:PreloadContent()
+
+require(script.UI)

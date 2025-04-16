@@ -2,7 +2,7 @@ local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local HttpService = game:GetService("HttpService")
 
 local Roact = require(ReplicatedStorage.Packages.Roact)
-local RoactHooks = require(ReplicatedStorage.Packages.Hooks)
+local RoactHooks = require(ReplicatedStorage.Packages.RoactHooks)
 
 local FrameRandomUUID = HttpService:GenerateGUID(false)
 local FrameName = "HealthDisplay" .. "_" .. FrameRandomUUID

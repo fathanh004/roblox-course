@@ -10,6 +10,7 @@ local QuestReducer = require(Reducers.QuestReducer)
 local DiamondReducer = require(Reducers.DiamondReducer)
 local FightReducer = require(Reducers.FightReducer)
 local BattleReducer = require(Reducers.BattleReducer)
+local PetReducer = require(Reducers.PetReducer)
 
 -- Modules
 local Rodux = require(ReplicatedStorage.Packages.Rodux)
@@ -22,6 +23,7 @@ local StoreReducer = Rodux.combineReducers({
 	DiamondReducer = DiamondReducer,
 	FightReducer = FightReducer,
 	BattleReducer = BattleReducer,
+	PetReducer = PetReducer,
 })
 
 local Store = Rodux.Store.new(StoreReducer, nil, {})

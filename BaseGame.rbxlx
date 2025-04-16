@@ -1121,7 +1121,7 @@ local ReplicatedStorage = game:GetService("ReplicatedStorage")
 -- Packages
 local KnitClient = require(ReplicatedStorage.Packages.Knit)
 local Roact = require(ReplicatedStorage.Packages.Roact)
-local RoduxHooks = require(ReplicatedStorage.Packages.Roduxhooks)
+local RoduxHooks = require(ReplicatedStorage.Packages.RoduxHooks)
 
 local Store = require(StarterPlayer.StarterPlayerScripts.Client.Rodux.Store)
 local Preloader = require(ReplicatedStorage.Packages.Preloader)
@@ -1787,9 +1787,9 @@ local ReplicatedStorage = game:GetService("ReplicatedStorage")
 -- Modules
 local Knit = require(ReplicatedStorage.Packages.Knit)
 local Roact = require(ReplicatedStorage.Packages.Roact)
-local RoactHooks = require(ReplicatedStorage.Packages.Hooks)
+local RoactHooks = require(ReplicatedStorage.Packages.RoactHooks)
 local roactSpring = require(ReplicatedStorage.Packages.RoactSpring)
-local RoduxHooks = require(ReplicatedStorage.Packages.Roduxhooks)
+local RoduxHooks = require(ReplicatedStorage.Packages.RoduxHooks)
 
 -- Component
 local function HUD(_, hooks)
@@ -2029,7 +2029,7 @@ local StarterPlayer = game:GetService("StarterPlayer")
 local Applications = StarterPlayer.StarterPlayerScripts.Client.Roact.Applications
 local Contexts = StarterPlayer.StarterPlayerScripts.Client.Roact.Contexts
 local AllowedApplicationsContext = require(Contexts.AllowedApplicationsContext)
-local RoactHooks = require(ReplicatedStorage.Packages.Hooks)
+local RoactHooks = require(ReplicatedStorage.Packages.RoactHooks)
 local Contexts = StarterPlayer.StarterPlayerScripts.Client.Roact.Contexts
 local ContextStack = require(Contexts.ContextStack)
 

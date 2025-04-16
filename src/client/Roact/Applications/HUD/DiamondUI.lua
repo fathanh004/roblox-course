@@ -3,8 +3,8 @@ local ReplicatedStorage = game:GetService("ReplicatedStorage")
 
 -- Modules
 local Roact = require(ReplicatedStorage.Packages.Roact)
-local RoactHooks = require(ReplicatedStorage.Packages.Hooks)
-local RoduxHooks = require(ReplicatedStorage.Packages.Roduxhooks)
+local RoactHooks = require(ReplicatedStorage.Packages.RoactHooks)
+local RoduxHooks = require(ReplicatedStorage.Packages.RoduxHooks)
 local roactSpring = require(ReplicatedStorage.Packages.RoactSpring)
 
 local function DiamondUI(_, hooks)

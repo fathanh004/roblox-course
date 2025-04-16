@@ -1,0 +1,61 @@
+-- local ReplicatedStorage = game:GetService("ReplicatedStorage")
+-- local HttpService = game:GetService("HttpService")
+
+-- local Roact = require(ReplicatedStorage.Packages.Roact)
+-- local RoactHooks = require(ReplicatedStorage.Packages.RoactHooks)
+-- local RoduxHooks = require(ReplicatedStorage.Packages.RoduxHooks)
+
+-- local FramesFolder = script.Parent
+
+-- local FrameRandomUUID = HttpService:GenerateGUID(false)
+-- local FrameName = "Pet" .. "_" .. FrameRandomUUID
+
+-- function Pet(props, hooks)
+-- 	local petData = props.pet or {}
+
+-- 	return Roact.createElement("Frame", {
+-- 		BorderColor3 = Color3.fromHex("000000"),
+-- 		BackgroundColor3 = Color3.fromHex("ffffff"),
+-- 		Size = UDim2.fromOffset(100, 100),
+-- 	}, {
+-- 		TextButton = Roact.createElement("TextButton", {
+-- 			LayoutOrder = 2,
+-- 			TextColor3 = Color3.fromHex("000000"),
+-- 			BorderColor3 = Color3.fromHex("000000"),
+-- 			Text = "Combine",
+-- 			Font = 3,
+-- 			Position = UDim2.fromScale(0, 0.5),
+-- 			Size = UDim2.fromOffset(100, 30),
+-- 			BorderSizePixel = 0,
+-- 			TextSize = 14,
+-- 			BackgroundColor3 = Color3.fromHex("ffffff"),
+-- 		}),
+-- 		UIListLayout = Roact.createElement("UIListLayout", {
+-- 			HorizontalAlignment = Enum.HorizontalAlignment.Center,
+-- 			SortOrder = Enum.SortOrder.LayoutOrder,
+-- 		}),
+-- 		ImageLabel = Roact.createElement("ImageLabel", {
+-- 			LayoutOrder = 1,
+-- 			Image = petData.image or "rbxasset://textures/ui/GuiImagePlaceholder.png",
+-- 			BorderColor3 = Color3.fromHex("000000"),
+-- 			BackgroundColor3 = Color3.fromHex("ffffff"),
+-- 			BorderSizePixel = 0,
+-- 			Size = UDim2.fromOffset(80, 80),
+-- 		}),
+-- 		PetName = Roact.createElement("TextLabel", {
+-- 			TextWrapped = true,
+-- 			TextColor3 = Color3.fromHex("000000"),
+-- 			BorderColor3 = Color3.fromHex("000000"),
+-- 			Text = petData.name or "Unknown",
+-- 			Font = 3,
+-- 			Size = UDim2.fromOffset(100, 20),
+-- 			TextScaled = true,
+-- 			TextSize = 14,
+-- 			BorderSizePixel = 0,
+-- 			BackgroundColor3 = Color3.fromHex("ffffff"),
+-- 		}),
+-- 	})
+-- end
+
+-- Pet = RoactHooks.new(Roact)(Pet)
+-- return Pet

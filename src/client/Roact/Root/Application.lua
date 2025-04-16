@@ -12,7 +12,7 @@ local StarterPlayer = game:GetService("StarterPlayer")
 local Applications = StarterPlayer.StarterPlayerScripts.Client.Roact.Applications
 local Contexts = StarterPlayer.StarterPlayerScripts.Client.Roact.Contexts
 local AllowedApplicationsContext = require(Contexts.AllowedApplicationsContext)
-local RoactHooks = require(ReplicatedStorage.Packages.Hooks)
+local RoactHooks = require(ReplicatedStorage.Packages.RoactHooks)
 local Contexts = StarterPlayer.StarterPlayerScripts.Client.Roact.Contexts
 local ContextStack = require(Contexts.ContextStack)
 
@@ -22,6 +22,7 @@ local HUD = require(Applications.HUD.Application)
 local QuestUI = require(Applications.HUD.QuestUI)
 local DiamondUI = require(Applications.HUD.DiamondUI)
 local EnemyHealthUI = require(Applications.HUD.EnemyHealthUI)
+-- local GoldMachineUI = require(Applications.HUD.GoldMachineUI)
 
 local function Root(props, hooks)
 	return Roact.createElement(ContextStack, {
@@ -44,6 +45,7 @@ local function GameFrame()
 			QuestUI = Roact.createElement(QuestUI),
 			DiamondUI = Roact.createElement(DiamondUI),
 			EnemyHealthUI = Roact.createElement(EnemyHealthUI),
+			-- GoldMachineUI = Roact.createElement(GoldMachineUI),
 		}),
 	})
 end

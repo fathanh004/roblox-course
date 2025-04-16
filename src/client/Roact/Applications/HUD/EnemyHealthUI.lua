@@ -2,8 +2,8 @@ local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local HttpService = game:GetService("HttpService")
 
 local Roact = require(ReplicatedStorage.Packages.Roact)
-local RoactHooks = require(ReplicatedStorage.Packages.Hooks)
-local RoduxHooks = require(ReplicatedStorage.Packages.Roduxhooks)
+local RoactHooks = require(ReplicatedStorage.Packages.RoactHooks)
+local RoduxHooks = require(ReplicatedStorage.Packages.RoduxHooks)
 
 local FramesFolder = script.Parent
 
@@ -16,7 +16,6 @@ function EnemyHealthUI(_, hooks)
 	end)
 
 	local enemyHealthItems = {}
-	print(BattleState.enemies)
 	for i, enemy in ipairs(BattleState.enemies) do
 		table.insert(
 			enemyHealthItems,
@@ -55,7 +54,6 @@ function EnemyHealthUI(_, hooks)
 		)
 	end
 
-	print(enemyHealthItems)
 	return Roact.createElement("Frame", {
 		Name = FrameName,
 		BackgroundTransparency = 1,
