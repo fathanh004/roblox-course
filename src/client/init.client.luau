@@ -16,7 +16,7 @@ local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local KnitClient = require(ReplicatedStorage.Packages.Knit)
 local Roact = require(ReplicatedStorage.Packages.Roact)
 local RoduxHooks = require(ReplicatedStorage.Packages.RoduxHooks)
-
+local UIModule = require(ReplicatedStorage.Packages.uiModule)
 local Store = require(StarterPlayer.StarterPlayerScripts.Client.Rodux.Store)
 local Preloader = require(ReplicatedStorage.Packages.Preloader)
 
@@ -36,6 +36,7 @@ Preloader:Configure({
 		componentsPath = nil,
 	},
 })
+
 Preloader.ControllersLoadedSignal:Connect(function()
 	KnitClient.Start()
 		:andThen(function()
